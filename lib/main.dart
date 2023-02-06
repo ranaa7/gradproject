@@ -2,9 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:gradproject/provider/auth/auth_provider.dart';
+import 'package:gradproject/provider/bottom_navy_provider.dart';
 import 'package:gradproject/provider/control_provider.dart';
 import 'package:gradproject/view/screens/auth/login_screen.dart';
 import 'package:gradproject/view/screens/homescreen.dart';
+import 'package:gradproject/view/screens/welcomescreen.dart';
+import 'package:gradproject/view/widget/bottom_navy_screen.dart';
 import 'package:gradproject/view/widget/control_view.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +21,7 @@ void main()async {
 
     ChangeNotifierProvider(create: (context) => AuthProvider()),
     ChangeNotifierProvider(create: (context) => ControlProvider()),
+    ChangeNotifierProvider(create: (context) => BottomNavyProvider()),
   ], child: MyApp()));
 }
 
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: Homescreen(),
+      home: WelcomeScreen(),
     );
   }
 }
