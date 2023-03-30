@@ -22,8 +22,7 @@ class BottomNavyScreen extends StatelessWidget {
             ],
           ),
           child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            child: Expanded(
               child: GNav(
                 rippleColor: Colors.grey[300]!,
                 hoverColor: Colors.grey[100]!,
@@ -42,8 +41,14 @@ class BottomNavyScreen extends StatelessWidget {
 
                   ),
                   GButton(
+                    icon: LineIcons.camera,
+                    text: 'Camera',
+                    backgroundColor:Colors.tealAccent,
+
+                  ),
+                  GButton(
                     icon:Icons.fastfood,
-                    text: 'Meal plan',
+                    text: 'plan',
                     backgroundColor:Colors.purpleAccent,
                   ),
                   GButton(

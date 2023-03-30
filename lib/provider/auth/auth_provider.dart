@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gradproject/view/screens/homescreen.dart';
+import 'package:gradproject/view/widget/bottom_navy_screen.dart';
 
 import '../../models/user_model.dart';
 import '../../view/screens/auth/login_screen.dart';
@@ -23,7 +24,7 @@ class AuthProvider extends ChangeNotifier {
         idToken: googleSignInAuthentication.idToken,
         accessToken: googleSignInAuthentication.accessToken);
     await auth.signInWithCredential(credential).then((user) {
-      saveuser(user, "");
+      saveuser(user, "","","","");
       Get.to(Homescreen());
     });
   }
@@ -32,7 +33,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
       //Get.to(ChatScreen());
-      Get.offAll(Homescreen());
+      Get.offAll(BottomNavyScreen());
     }
     catch (e) {
       print(e);
@@ -52,15 +53,17 @@ class AuthProvider extends ChangeNotifier {
     Get.offAll(LoginScreen());
   }
 
-  void signup(String email, String password, String name) async {
+  void signup(String email, String password, String name,String vegan,String lactose,String spicy) async {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password).then((user) async {
-        saveuser(user, name);
+        saveuser(user, name,vegan,lactose, spicy);
+
+      // saveUserPref(" ", " ", user.user!.uid!);
       }
       );
 
-      Get.offAll(Homescreen());
+      Get.offAll(BottomNavyScreen());
     }
     catch (e) {
       print(e);
@@ -70,13 +73,21 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  saveuser(UserCredential user, String name) async {
-    UserModel userModel = UserModel(
-        name: name == "" ?user.user!.displayName! :name ,
-        email: user.user!.email!, image: "", userId: user.user!.uid);
-
+  saveuser(UserCredential user, String name,String vegan,String lactose, String spicy) async {
+    // UserModel userModel = UserModel(
+    //     name: name == "" ?user.user!.displayName! :name ,
+    //     email: user.user!.email!, image: "", userId: user.user!.uid);
+ UserModel userModel=UserModel( name: name == "" ?user.user!.displayName! :name, email: user.user!.email!, image: "", userId: user.user!.uid, vegan: vegan, lactose: lactose,spicy: spicy);
     await firestore.collection("users").doc(user.user!.uid).set(                          //collection gowaha doc gowah collection tany or field
         userModel.toJson());
     //myzt el set 3n el add en ana mmkn ely a7dd el doc id bt3 el sh5s
   }
+
+
+
+// saveUserPref( String Allergy, String Pref, String uid)async{
+// UserPref userPref=UserPref(Allergy: Allergy, pref: Pref,UID:uid);
+// await firestore.collection("userpref").doc(userPref.UID).set(                          //collection gowaha doc gowah collection tany or field
+//     userPref.toJson());
+// }
 }
