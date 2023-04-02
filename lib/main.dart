@@ -4,9 +4,13 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:gradproject/provider/auth/auth_provider.dart';
 import 'package:gradproject/provider/bottom_navy_provider.dart';
 import 'package:gradproject/provider/control_provider.dart';
+import 'package:gradproject/provider/recipe_provider.dart';
+import 'package:gradproject/provider/search_provider.dart';
 import 'package:gradproject/view/screens/auth/login_screen.dart';
 import 'package:gradproject/view/screens/auth/register_screen.dart';
 import 'package:gradproject/view/screens/homescreen.dart';
+import 'package:gradproject/view/screens/searchscreen.dart';
+import 'package:gradproject/view/screens/user_profile_screen.dart';
 import 'package:gradproject/view/screens/welcomescreen.dart';
 import 'package:gradproject/view/widget/bottom_navy_screen.dart';
 import 'package:gradproject/view/widget/control_view.dart';
@@ -23,6 +27,8 @@ void main()async {
     ChangeNotifierProvider(create: (context) => AuthProvider()),
     ChangeNotifierProvider(create: (context) => ControlProvider()),
     ChangeNotifierProvider(create: (context) => BottomNavyProvider()),
+    ChangeNotifierProvider(create: (context) => Recipeprovider()),
+    ChangeNotifierProvider(create: (context) => Searchprovider()),
   ], child: MyApp()));
 }
 

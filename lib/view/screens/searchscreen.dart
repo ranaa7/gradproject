@@ -1,91 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:gradproject/provider/search_provider.dart';
+import 'package:provider/provider.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(title: Image.asset("assets/jamie-oliver.jpg"),),
+    
+    return Consumer<Searchprovider>(builder:(context,provider,child)
+    {
+     return Scaffold(
+        // appBar: AppBar(title: Image.asset("assets/jamie-oliver.jpg"),),
         appBar: AppBar(
           backgroundColor: Colors.white60,
           title: TextField(
-            onChanged:(value){
-              // provider.getAllSearchArticle(value);
+            onChanged: (value) {
+             provider.getAllSearchrecipe(value);
             },
-            decoration:InputDecoration(suffixIcon: Icon(Icons.search),hintText:"search",),),
+            decoration: InputDecoration(
+              suffixIcon: Icon(Icons.search), hintText: "search",),),
         ),
 
-       body:
-      Stack(
-          children: <Widget>[
-            Container(
-              constraints: BoxConstraints.expand(),
-              height: 786,
+        body:
+        Stack(
+          children:[
 
-              child: Image.asset("assets/grapes.jpg",fit: BoxFit.cover,),
-            ),
+              Container(
+                constraints: BoxConstraints.expand(),
+                height: 786,
 
-            ListView(children: [
-              Card(
-              elevation: 5,
-              color: Colors.white60,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      child: Image.network("https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"),
-                    ),
-                  ),
-                  Expanded(
-                    child: ListTile(
-                      title: Text(
-                        "hvhbgkgklbkmlkfmbg",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      subtitle: Text(
-                        "uigyttftrybhj",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  )
-                ],
+                child: Image.asset("assets/grapes.jpg", fit: BoxFit.cover,),
               ),
-            )
-            ],),
-
-            // ListView.builder(itemCount:provider.searchList.length,itemBuilder: (context, index) {
-            //        return Card(
-            //     elevation: 5,
-            //          color: Colors.white60,
-            //           child: Row(
-            //             children: [
-            //          Expanded(
-            //          child: Container(
-            //       child: Image.network(
-            //            provider.searchList[index].urltoimg??"https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"),
-            //            ),
-            //   ),
-            //          Expanded(
-            //           child: ListTile(
-            //             title: Text(
-            //     provider.searchList[index].title.toString(),
-            //        style: TextStyle(color: Colors.black),
-            //           ),
-            //          subtitle: Text(
-            //            provider.searchList[index].des.toString(),
-            //         style: TextStyle(color: Colors.black),
-            //        ),
-            //        ),
-            //           )
-            //           ],
-            //   ),
-            //        );
-            //        }) )
 
 
+              ListView.builder(itemCount:provider.searchmodel.length, itemBuilder: (context, index) {
+                return Card(
+                  elevation: 5,
+                  color: Colors.white60,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          child: Image.network(
+                              provider.searchmodel[index].image),
+                        ),
+                      ),
+                      // Column(children: [],)
+                      Expanded(
+                        child: ListTile(
+                          title: Text(
+                            provider.searchmodel[index].name,
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          subtitle: Text(
+                            provider.searchmodel[index].recipecateg,
+                            style: TextStyle(color: Colors.pink),
+                          ),
 
-          ], )
-    );
+                        ),
+                      )
+
+                    ],
+                  ),
+                );
+              }),
+
+          ],),
+      );
+    });
   }
 }

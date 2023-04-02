@@ -14,6 +14,7 @@ class AuthProvider extends ChangeNotifier {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   GoogleSignIn googleSignIn = GoogleSignIn();
+  UserModel model = UserModel(name: "", email: "", image: "", userId: "", vegan: "", lactose: "", spicy: "");
 
   void googlesignin() async {
     final GoogleSignInAccount? googleuser = await googleSignIn.signIn();
@@ -83,11 +84,10 @@ class AuthProvider extends ChangeNotifier {
     //myzt el set 3n el add en ana mmkn ely a7dd el doc id bt3 el sh5s
   }
 
+  getuser()async{
+    await firestore.collection("users").doc(auth.currentUser!.uid).get().then((value) {model=UserModel.fromJson(value.data()!);
+    });
+    notifyListeners();
+  }
 
-
-// saveUserPref( String Allergy, String Pref, String uid)async{
-// UserPref userPref=UserPref(Allergy: Allergy, pref: Pref,UID:uid);
-// await firestore.collection("userpref").doc(userPref.UID).set(                          //collection gowaha doc gowah collection tany or field
-//     userPref.toJson());
-// }
 }
