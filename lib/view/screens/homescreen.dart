@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gradproject/provider/auth/auth_provider.dart';
+import 'package:gradproject/provider/detailed_provider.dart';
 import 'package:gradproject/provider/recipe_provider.dart';
 import 'package:gradproject/view/screens/searchscreen.dart';
+import 'package:gradproject/view/widget/button.dart';
 import 'package:provider/provider.dart';
 
 class Homescreen extends StatelessWidget {
@@ -10,7 +12,9 @@ class Homescreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     var provider = Provider.of<Recipeprovider>(context);
+    var provider1 = Provider.of<Detailedprovider>(context);
     return Scaffold(
       body: SafeArea(
           child: Container(
@@ -19,46 +23,131 @@ class Homescreen extends StatelessWidget {
             Text(
               "Find Best Recipe For Cooking",
               style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.deepPurple[200],
                   fontSize: 30,
                   fontStyle: FontStyle.italic),
             ),
-              Row(children: [
+            Row(
+              children: [
                 Expanded(
-                  child: IconButton(onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder:(context)=>SearchScreen()
-                  ));
-              }, icon: Icon(Icons.search)),
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => SearchScreen()));
+                      },
+                      icon: Icon(Icons.search),color: Colors.black,),
                 ),
-                Expanded(child: Image.asset("assets/chef_hat.jpg",height: 100,width: 100,)),
                 Expanded(
-                  child: IconButton(onPressed: (){
-                    Provider.of<AuthProvider>(context,listen: false).signout();
-                  }, icon: Icon(Icons.logout)),
-                ),],),
-
+                    child: ClipOval(child: Image.asset("assets/MicrosoftTeams-image.png"))),
+                Expanded(
+                  child: IconButton(
+                      onPressed: () {
+                        Provider.of<AuthProvider>(context, listen: false)
+                            .signout();
+                      },
+                      icon: Icon(Icons.logout),color: Colors.black,),
+                ),
+              ],
+            ),
             SizedBox(
               height: 20,
             ),
-            Row(children: [
-              Expanded(child: ElevatedButton(onPressed: (){}, child: Text("Breakfast"))),
-              SizedBox(
-                width: 5,
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Popular Categories",
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontStyle: FontStyle.italic),
+                ),
               ),
-              Expanded(child: ElevatedButton(onPressed: (){}, child: Text("Lunch"))),
-              SizedBox(
-                width: 5,
-              ),
-              Expanded(child: ElevatedButton(onPressed: (){}, child: Text("Dessert"))),
-            ],),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: CircleAvatar(
+                    child: ClipOval(
+                      child: Image.network(
+                          "https://images.immediate.co.uk/production/volatile/sites/30/2013/05/Healthy-porridge-bowl-b1f9205.jpg",
+                          fit: BoxFit.cover
+                      ),
+                    ),
+                    radius: 21,
+                  ),
+                  label: Text("Breakfast"),
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      primary: Colors.deepPurple[100]
+                  ),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+
+                ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: CircleAvatar(
+                    child: ClipOval(
+                      child: Image.network(
+                          "https://www.acouplecooks.com/wp-content/uploads/2022/01/Hummus-Bowl-016.jpg",
+                          fit: BoxFit.cover
+                      ),
+                    ),
+                    radius: 21,
+                  ),
+                  label: Text("Lunch"),
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      primary: Colors.deepPurple[100]
+                  ),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+
+                ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: CircleAvatar(
+                    child: ClipOval(
+                      child: Image.network("https://resize.img.allw.mn/thumbs/00/surd8r8ca2rka63zdt9in_1080_1225.jpg?width=1200&height=1200",fit: BoxFit.cover)
+                    ),
+                    radius: 21,
+                  ),
+                  label: Text("Desert"),
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      primary: Colors.deepPurple[100]
+                  ),
+                ),
+              ],
+            ),
             SizedBox(
               height: 10,
             ),
-            Align(alignment: Alignment.topCenter,
-              child: Text(
-                  "Top Rated Recipes", style: TextStyle(
-                  fontSize: 18 , color: Colors.green,fontStyle: FontStyle.italic
-              ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Top Rated Recipes",
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontStyle: FontStyle.italic,),
+                ),
               ),
             ),
             SizedBox(
@@ -68,86 +157,60 @@ class Homescreen extends StatelessWidget {
               child: ListView(
                 children: [
                   Expanded(
-                    child:
-                      CarouselSlider.builder(
-                        options: CarouselOptions(
-                          height: 380.0,
-                          enlargeCenterPage: true,
-                          autoPlay: true,
-                          aspectRatio: 16 / 9,
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          enableInfiniteScroll: true,
-                          autoPlayAnimationDuration:
-                          Duration(milliseconds: 800),
-                          viewportFraction: 0.8,
-                        ),
-                        itemCount: provider.recipemodel.length,
-                        itemBuilder: (context, itemIndex, realIndex)
-                        {
-                          return Stack(children: [
-                            Container(
-                          margin: EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                        image: DecorationImage(
-                        image: NetworkImage(
-                        provider.recipemodel[itemIndex].image),
-                        fit: BoxFit.cover,
-                        ),
-                        ),
-                          ),
-                            Align(alignment: Alignment.bottomLeft,
-                              child: Text(provider
-                                .recipemodel[itemIndex].name, style: TextStyle(
-                                  fontSize: 18 , color: Colors.cyanAccent
-                              ),),
+                      child: CarouselSlider.builder(
+                    options: CarouselOptions(
+                      height: 380.0,
+                      enlargeCenterPage: true,
+                      autoPlay: true,
+                      aspectRatio: 16 / 9,
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enableInfiniteScroll: true,
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      viewportFraction: 0.8,
+                    ),
+                    itemCount: provider.recipemodel.length,
+                    itemBuilder: (context, itemIndex, realIndex) {
+                      return Stack(
+                        children: [
+                          GestureDetector(
+                            onTap:(){
+                              provider1.getdetails(provider.recipemodel[itemIndex].id);
+                              print(provider.recipemodel[itemIndex].id);
+                            },
+                            child: Card(
+                              elevation: 40,
+                              shadowColor: Colors.indigoAccent,
+                              child: Container(
+                                margin: EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                        provider.recipemodel[itemIndex].image),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ],);
-
-                          },)
-
-
-
-
-
-                    // CarouselSlider(
-                    //   items: [
-                    //     Container(
-                    //       margin: EdgeInsets.all(8.0),
-                    //       decoration: BoxDecoration(
-                    //         borderRadius: BorderRadius.circular(10.0),
-                    //         image: DecorationImage(
-                    //           image: NetworkImage(
-                    //               "https://img.freepik.com/free-photo/flat-lay-batch-cooking-composition_23-2148765597.jpg"),
-                    //           fit: BoxFit.cover,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       margin: EdgeInsets.all(8.0),
-                    //       decoration: BoxDecoration(
-                    //         borderRadius: BorderRadius.circular(10.0),
-                    //         image: DecorationImage(
-                    //           image: NetworkImage(
-                    //               "https://img.freepik.com/premium-photo/juicy-american-burger-hamburger-cheeseburger-with-two-beef-patties-with-sauce-basked-black-space_124865-5964.jpg"),
-                    //           fit: BoxFit.cover,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    //   options: CarouselOptions(
-                    //     height: 380.0,
-                    //     enlargeCenterPage: true,
-                    //     autoPlay: true,
-                    //     aspectRatio: 16 / 9,
-                    //     autoPlayCurve: Curves.fastOutSlowIn,
-                    //     enableInfiniteScroll: true,
-                    //     autoPlayAnimationDuration:
-                    //         Duration(milliseconds: 800),
-                    //     viewportFraction: 0.8,
-                    //   ),
-                    // ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Text(
+                                provider.recipemodel[itemIndex].name,
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.black, fontWeight: FontWeight.bold
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   )
+                      )
                 ],
               ),
             )

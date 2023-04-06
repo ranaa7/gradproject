@@ -27,6 +27,7 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Expanded(child: ClipOval(child: Image.asset("assets/MicrosoftTeams-image.png",height: 150,),)),
               Text("Login",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
               Text("Welcome Back",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
               SizedBox(height: 20,),
@@ -42,10 +43,8 @@ class LoginScreen extends StatelessWidget {
                   label: Text('Email'),
                   prefixIcon: Icon(Icons.email),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-
+                    borderRadius: BorderRadius.circular(10),borderSide: BorderSide(color:Colors.deepPurple.shade100)
                   ),
-
                 ),
               ),
               SizedBox(height: 20,),
@@ -61,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                   hintText: 'Enter Password',
                   label: Text('Password'),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10),borderSide: BorderSide(color:Colors.deepPurple.shade100)
                   ),
                   prefixIcon: Icon(Icons.lock),
                   suffixIcon: Icon(Icons.remove_red_eye),
@@ -77,6 +76,12 @@ class LoginScreen extends StatelessWidget {
                     }
                   },
                   child: Text('Login',style: TextStyle(fontSize: 20),),
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      primary: Colors.deepPurple[100]
+                  ),
                 ),
               ),
               Row(
@@ -87,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () {
                     Get.to(RegisterScreen());
                     },
-                    child: Text('Sign Up'),
+                    child: Text('Sign Up',style: TextStyle(color: Colors.deepPurple),),
                   ),
                 ],
               ),

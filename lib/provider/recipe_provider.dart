@@ -19,4 +19,17 @@ class Recipeprovider extends ChangeNotifier {
       print(e);
     }
   }
+
+  Future getRelatedRecipe(String recipeName) async {
+    try {
+      var response = await Dio().get("http://10.0.2.2:5000/related?recipe=$recipeName");
+      recipemodel= List<Recipemodel>.from(response.data["recipes"].map((x)=>Recipemodel.fromJson(x)));
+      notifyListeners();
+    }
+    catch (e) {
+      print(e);
+    }
+  }
+
+
 }

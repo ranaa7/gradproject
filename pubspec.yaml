@@ -47,6 +47,9 @@ dependencies:
   line_icons: ^2.0.1
   carousel_slider: ^4.2.1
   dio: ^4.0.6
+  tflite: ^1.1.2
+#  image_picker: ^0.8.3+2
+  image: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +80,10 @@ flutter:
      - assets/jamie-oliver.jpg
      - assets/chef_hat.jpg
      - assets/grapes.jpg
+     - assets/labels.txt
+     - assets/MicrosoftTeams-image.png
+     - assets/mobilenet_model.tflite
+     - assets/plate.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

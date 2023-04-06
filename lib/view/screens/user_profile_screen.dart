@@ -19,11 +19,13 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             Center(
-                child: CircleAvatar(
+                child: ClipOval(
+                  child: CircleAvatar(
               child: Image.network(
-                  "https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png"),
+                    "https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png"),
               radius: 90,
-            )),
+            ),
+                )),
             SizedBox(height: 20,),
             Text("Name:",style: TextStyle(fontSize: 20),),
             SizedBox(height: 10,),
@@ -33,18 +35,21 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(height: 10,),
             Text(userprovider.model.email,style: TextStyle(fontSize: 20),),
             Divider(),
-            Text("Vegan or not:",style: TextStyle(fontSize: 20),),
+            Text("Your Preference",style: TextStyle(fontSize: 20),),
             SizedBox(height: 10,),
-            Text(userprovider.model.vegan,style: TextStyle(fontSize: 20),),
-            Divider(),
-            Text("Are you lactose-free?:",style: TextStyle(fontSize: 20),),
-            SizedBox(height: 10,),
-            Text(userprovider.model.lactose,style: TextStyle(fontSize: 20),),
-            Divider(),
-            Text("Do you prefer spicy or not?:",style: TextStyle(fontSize: 20),),
-            SizedBox(height: 10,),
-            Text(userprovider.model.spicy,style: TextStyle(fontSize: 20),),
-            Divider()
+            Text(userprovider.model.preference.toString(),style: TextStyle(fontSize: 20),),
+            // SizedBox(height: 10,),
+            // Text(userprovider.model.vegan,style: TextStyle(fontSize: 20),),
+            // Divider(),
+            // Text("Are you lactose-free?:",style: TextStyle(fontSize: 20),),
+            // SizedBox(height: 10,),
+            // Text(userprovider.model.lactose,style: TextStyle(fontSize: 20),),
+            // Divider(),
+            // Text("Do you prefer spicy or not?:",style: TextStyle(fontSize: 20),),
+            // SizedBox(height: 10,),
+            // Text(userprovider.model.spicy,style: TextStyle(fontSize: 20),),
+            // Divider(),
+
           ],
         ),
       )),

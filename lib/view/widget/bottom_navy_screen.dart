@@ -47,11 +47,6 @@ class BottomNavyScreen extends StatelessWidget {
 
                   ),
                   GButton(
-                    icon:Icons.fastfood,
-                    text: 'plan',
-                    backgroundColor:Colors.purpleAccent,
-                  ),
-                  GButton(
                     icon: Icons.favorite,
                     text: 'Favorite',
                     backgroundColor:Colors.deepPurpleAccent,

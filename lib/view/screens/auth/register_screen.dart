@@ -50,6 +50,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 textAlign: TextAlign.center,
               ),
               SizedBox(
+                height: 10,
+              ),
+              Text(
+                "1/2",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.grey),
+                textAlign: TextAlign.center,
+
+              ),
+
+              SizedBox(
                 height: 20,
               ),
               TextFormField(
@@ -65,6 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   prefixIcon: Icon(Icons.person),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color:Colors.deepPurple.shade100)
                   ),
                 ),
               ),
@@ -84,6 +95,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   prefixIcon: Icon(Icons.email),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color:Colors.deepPurple.shade100)
                   ),
                 ),
               ),
@@ -93,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextFormField(
                 controller: _password,
                 validator: (value) {
-                  if (value!.isEmpty || value.length < 3) {
+                  if (value!.isEmpty || value.length < 6) {
                     return "Please enter your password";
                   }
                   return null;
@@ -102,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   hintText: 'Enter Password',
                   label: Text('Password'),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color:Colors.deepPurple.shade100)
                   ),
                   prefixIcon: Icon(Icons.lock),
                   suffixIcon: Icon(Icons.remove_red_eye),
@@ -164,6 +176,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     }
                   },
                   child: Text('Next', style: TextStyle(fontSize: 20)),
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      primary: Colors.deepPurple[100]
+                  ),
                 ),
               ),
               Row(
@@ -174,7 +192,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onPressed: () {
                     Get.to(LoginScreen());
                     },
-                    child: Text('Login'),
+                    child: Text('Login',style: TextStyle(color: Colors.deepPurple),),
                   ),
                 ],
               ),

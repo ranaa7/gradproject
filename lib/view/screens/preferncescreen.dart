@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gradproject/provider/auth/auth_provider.dart';
+import 'package:gradproject/view/screens/checkmodel.dart';
 import 'package:provider/provider.dart';
 
 class Preference_screen extends StatefulWidget {
-   Preference_screen({Key? key,required this.e,required this.p,required this.n
+   Preference_screen({Key? key,required this.e,required this.p,required this.n,
    }) : super(key: key);
 
 // final Key formkey;
@@ -16,30 +17,45 @@ class Preference_screen extends StatefulWidget {
   var n = TextEditingController();
 
 
+
   State<Preference_screen> createState() => _Preference_screenState();
 }
 
 class _Preference_screenState extends State<Preference_screen> {
   // final _formKey = GlobalKey<FormState>();
- String? veg ;
- String? lactose ;
- String? spicy ;
+ // String? veg ;
+ // String? lactose ;
+ // String? spicy ;
 
   // String dropdownvalue = 'Dairy product';
 
-  var items = [
-    'Dairy product',
-    'Eggs',
-    'shellfish',
-    'Soy',
-    'Chocolate',
-    'Nuts',
-    'Wheat'
-  ];
+  // var items = [
+  //   'Dairy product',
+  //   'Eggs',
+  //   'shellfish',
+  //   'Soy',
+  //   'Chocolate',
+  //   'Nuts',
+  //   'Wheat'
+  // ];
+
+ final allowNotifications = NotificationSetting(title: 'Dietary restrictions all');
+
+ final notifications = [
+   NotificationSetting(title: 'Spicy'),
+   NotificationSetting(title: 'Lactose Free'),
+   NotificationSetting(title: 'Low Protein'),
+   NotificationSetting(title: 'High Protein'),
+   NotificationSetting(title: 'Healthy'),
+   NotificationSetting(title: 'Vegan'),
+   NotificationSetting(title: 'Very Low Carbs'),
+   NotificationSetting(title: 'Low Cholestrol'),
+ ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(
@@ -49,7 +65,11 @@ class _Preference_screenState extends State<Preference_screen> {
               children: [
                 SizedBox(height: 15,),
                 Text("2/2", style: TextStyle(
-                    fontSize: 18
+                    fontSize: 18, fontWeight: FontWeight.bold,color: Colors.grey
+                ),),
+                SizedBox(height: 10,),
+                Text("Enter your preference", style: TextStyle(
+                    fontSize: 18, fontWeight: FontWeight.bold,color: Colors.black
                 ),),
                 SizedBox(height: 15,),
                 // DropdownButton(value:dropdownvalue,items: items.map((String items){
@@ -60,106 +80,94 @@ class _Preference_screenState extends State<Preference_screen> {
                 //   });
                 // }),
                 SizedBox(height: 30,),
-                Text("Are you vegeterian or not?", style: TextStyle(
-                    fontSize: 18
-                ),),
 
+    Expanded(
+      child: ListView(
+              children: [
+                buildToggleCheckbox(allowNotifications),
                 Divider(),
+                ...notifications.map(buildSingleCheckbox).toList(),
+              ],
+            ),
+    ),
 
-                RadioListTile(
-                  title: Text("Vegeterian"),
-                  value: "Vegeterian",
-                  groupValue: veg,
-                  onChanged: (value){
-                    setState(() {
-                      veg = value.toString();
-                    });
-                  },
-                ),
 
-                RadioListTile(
-                  title: Text("Non vegeterian"),
-                  value: "Non vegeterian",
-                  groupValue: veg,
-                  onChanged: (value){
-                    setState(() {
-                      veg = value.toString();
-                    });
-                  },
-                ),
 
-                SizedBox(height: 30,),
-                Text("Are you lactose-free?", style: TextStyle(
-                    fontSize: 18
-                ),),
-
-                Divider(),
-
-                RadioListTile(
-                  title: Text("yes"),
-                  value: "yes",
-                  groupValue: lactose,
-                  onChanged: (value){
-                    setState(() {
-                      lactose = value.toString();
-                    });
-                  },
-                ),
-
-                RadioListTile(
-                  title: Text("No, i don't mind"),
-                  value: "No, i don't mind",
-                  groupValue: lactose,
-                  onChanged: (value){
-                    setState(() {
-                      lactose= value.toString();
-                    });
-                  },
-                ),
-                SizedBox(height: 30,),
-                Text("Do you prefer spicy food or not?", style: TextStyle(
-                    fontSize: 18
-                ),),
-
-                Divider(),
-
-                RadioListTile(
-                  title: Text("Spicy"),
-                  value: "Spicy",
-                  groupValue: spicy,
-                  onChanged: (value){
-                    setState(() {
-                      spicy = value.toString();
-                    });
-                  },
-                ),
-
-                RadioListTile(
-                  title: Text("Not spicy"),
-                  value: "Not spicy",
-                  groupValue: spicy,
-                  onChanged: (value){
-                    setState(() {
-                      spicy = value.toString();
-                    });
-                  },
-                ),
                 Container(
                   child: ElevatedButton(
                     onPressed: () {
                       if(widget.form.currentState!.validate()) {
-                        Provider.of<AuthProvider>(context,listen: false).signup(widget.e.text, widget.p.text, widget.n.text,veg.toString(),lactose.toString(),spicy.toString());
+                        Provider.of<AuthProvider>(context,listen: false).signup(widget.e.text, widget.p.text, widget.n.text,names);
 
                       }
                     },
                     child: Text('Sign up', style: TextStyle(fontSize: 20)),
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        primary: Colors.deepPurple[100]
+                    ),
                   ),
                 ),
               ],
             )),
           ),
         ),
-      ),
-    );
+    ));
+
   }
+ Widget buildToggleCheckbox(NotificationSetting notification) => buildCheckbox(
+     notification: notification,
+     onClicked: () {
+       final newValue = !notification.value;
+
+       setState(() {
+         allowNotifications.value = newValue;
+
+         notifications.forEach((notification) {
+           notification.value = newValue;
+
+         });
+       });
+     });
+ List names=[];
+ Widget buildSingleCheckbox(NotificationSetting notification) => buildCheckbox(
+   notification: notification,
+   onClicked: () {
+     setState(() {
+       final newValue = !notification.value;
+       notification.value = newValue;
+
+       if (!newValue) {
+         allowNotifications.value = false;
+         names.remove(notification.title);
+       } else {
+         final allow =
+         notifications.every((notification) => notification.value);
+         allowNotifications.value = allow;
+
+         names.add(notification.title);
+
+         print(names);
+       }
+     });
+   },
+ );
+
+ Widget buildCheckbox({
+   required NotificationSetting notification,
+   required VoidCallback onClicked,
+ }) =>
+     ListTile(
+       onTap: onClicked,
+       leading: Checkbox(
+         value: notification.value,
+         onChanged: (value) => onClicked(),
+       ),
+       title: Text(
+         notification.title,
+         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+       ),
+     );
 }

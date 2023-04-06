@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradproject/view/screens/camerascreen.dart';
+import 'package:gradproject/view/screens/detailedpagescreen.dart';
 import 'package:gradproject/view/screens/favoritesscreen.dart';
 import 'package:gradproject/view/screens/homescreen.dart';
 import 'package:gradproject/view/screens/meal_plan_screen.dart';
@@ -16,16 +17,13 @@ class BottomNavyProvider extends ChangeNotifier{
       case 0:
         currentscreen=Homescreen();
         break;
-      case 2:
-        currentscreen=CameraScreen();
+      case 1:
+        currentscreen=Camerascreen();
         break;
       case 2:
-        currentscreen=MealPlanScreen();
-        break;
-      case 3:
         currentscreen=FavoritesScreen();
         break;
-      case 4:
+      case 3:
         currentscreen=ProfileScreen();
         break;
     }
