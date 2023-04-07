@@ -5,12 +5,12 @@ class Detailedmodel{
   String name;
   String image;
   String cooktime;
-  double calories;
+  String calories;
   String ingredients;
   String instructions;
   String keywords;
   String quantities;
-  double servings;
+  String servings;
 
   Detailedmodel({
    required this.id,

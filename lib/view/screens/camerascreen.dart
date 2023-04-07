@@ -172,12 +172,12 @@ class CamerascreenState extends State<Camerascreen> {
                     child: Column(
                       children: [
                         Container(
-                          height: 224,
+                          height: 250,
                           /*MediaQuery
                           .of(context)
                           .size
                           .width * 0.5,*/
-                          width: 224,
+                          width: 250,
                           /*MediaQuery
                           .of(context)
                           .size

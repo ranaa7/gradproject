@@ -37,24 +37,24 @@ class BottomNavyScreen extends StatelessWidget {
                   GButton(
                     icon: LineIcons.home,
                     text: 'Home',
-                    backgroundColor:Colors.pink,
+                    backgroundColor:Colors.deepPurple.shade100,
 
                   ),
                   GButton(
                     icon: LineIcons.camera,
                     text: 'Camera',
-                    backgroundColor:Colors.tealAccent,
+                    backgroundColor:Colors.deepPurple.shade100,
 
                   ),
                   GButton(
                     icon: Icons.favorite,
                     text: 'Favorite',
-                    backgroundColor:Colors.deepPurpleAccent,
+                    backgroundColor:Colors.deepPurple.shade100,
                   ),
                   GButton(
                     icon: Icons.person,
                     text: 'Profile',
-                    backgroundColor:Colors.yellow[600],
+                    backgroundColor:Colors.deepPurple.shade100,
                   ),
 
                 ],

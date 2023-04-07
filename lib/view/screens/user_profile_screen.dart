@@ -13,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
     Provider.of<AuthProvider>(context).getuser();
     var userprovider = Provider.of<AuthProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.deepPurple.shade50,
       body: SafeArea(
           child: Container(
         child: Column(
@@ -21,20 +21,24 @@ class ProfileScreen extends StatelessWidget {
             Center(
                 child: ClipOval(
                   child: CircleAvatar(
+                    backgroundColor: Colors.deepPurple.shade50,
               child: Image.network(
                     "https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png"),
               radius: 90,
             ),
                 )),
             SizedBox(height: 20,),
+
             Text("Name:",style: TextStyle(fontSize: 20),),
             SizedBox(height: 10,),
             Text(userprovider.model.name,style: TextStyle(fontSize: 20),),
             Divider(),
+            SizedBox(height: 10,),
             Text("Email:",style: TextStyle(fontSize: 20),),
             SizedBox(height: 10,),
             Text(userprovider.model.email,style: TextStyle(fontSize: 20),),
             Divider(),
+            SizedBox(height: 10,),
             Text("Your Preference",style: TextStyle(fontSize: 20),),
             SizedBox(height: 10,),
             Text(userprovider.model.preference.toString(),style: TextStyle(fontSize: 20),),

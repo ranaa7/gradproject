@@ -20,13 +20,6 @@ class Homescreen extends StatelessWidget {
           child: Container(
         child: Column(
           children: [
-            Text(
-              "Find Best Recipe For Cooking",
-              style: TextStyle(
-                  color: Colors.deepPurple[200],
-                  fontSize: 30,
-                  fontStyle: FontStyle.italic),
-            ),
             Row(
               children: [
                 Expanded(
@@ -61,7 +54,9 @@ class Homescreen extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,
-                      fontStyle: FontStyle.italic),
+                      // fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold
+                  ),
                 ),
               ),
             ),
@@ -146,7 +141,8 @@ class Homescreen extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,
-                      fontStyle: FontStyle.italic,),
+                      fontWeight: FontWeight.bold
+                  ),
                 ),
               ),
             ),
@@ -197,11 +193,15 @@ class Homescreen extends StatelessWidget {
                             padding: const EdgeInsets.all(15),
                             child: Align(
                               alignment: Alignment.topCenter,
-                              child: Text(
-                                provider.recipemodel[itemIndex].name,
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.black, fontWeight: FontWeight.bold
+                              child: Container(
+                                decoration:
+                                BoxDecoration(borderRadius: BorderRadius.circular(8),color: Colors.deepPurple[100]),
+                                child: Text(
+                                  provider.recipemodel[itemIndex].name,
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.white, fontWeight: FontWeight.bold
+                                  ),
                                 ),
                               ),
                             ),

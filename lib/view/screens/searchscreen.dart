@@ -89,7 +89,7 @@ class SearchScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               Expanded(
-                                child: FadeInImage.assetNetwork(image : provider.searchmodel[index].image=="character(0)"?"https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png":provider.searchmodel[index].image, placeholder: "assets/jamie-oliver.jpg"),
+                                child: FadeInImage.assetNetwork(image : provider.searchmodel[index].image=="character(0)"?"https://i.imgur.com/3A12AW2.png":provider.searchmodel[index].image, placeholder: "assets/jamie-oliver.jpg"),
                                 ),
                               // Column(children: [],)
                               Expanded(

@@ -21,7 +21,7 @@ class DetailedScreen extends StatelessWidget {
             Positioned(
               left: 0,
               right: 0,
-              child: Image.asset("assets/plate.png")
+              child: Image.network("https://i.imgur.com/3A12AW2.png")
 
             ),
 
@@ -151,7 +151,7 @@ class DetailedScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: TabBarView(
-                        children: [Text(provider1.detailedmodel[0].ingredients), Text(provider1.detailedmodel[0].instructions),
+                        children: [Text(provider1.detailedmodel[0].ingredients,style: TextStyle(fontSize:20 ),), Text(provider1.detailedmodel[0].instructions,style: TextStyle(fontSize:20 )),
                           ListView(
                             children: [
                               Expanded(
@@ -185,13 +185,21 @@ class DetailedScreen extends StatelessWidget {
                                               ),
                                             ),
                                           ),
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              provider2.relatedrecipe[itemIndex].name,
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                color: Colors.black,
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Align(
+                                              alignment: Alignment.topCenter,
+                                              child: Container(
+                                                decoration:
+                                                BoxDecoration(borderRadius: BorderRadius.circular(8),color: Colors.deepPurple[100]),
+                                                child: Text(
+                                                  provider2.relatedrecipe[itemIndex].name,
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
