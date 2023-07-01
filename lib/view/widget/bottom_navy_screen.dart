@@ -13,7 +13,7 @@ class BottomNavyScreen extends StatelessWidget {
         body: provider.currentscreen,
         bottomNavigationBar:Container(
           decoration: BoxDecoration(
-            color: Colors.grey,
+            color: Colors.grey[300],
             boxShadow: [
               BoxShadow(
                 blurRadius: 20,
@@ -27,7 +27,7 @@ class BottomNavyScreen extends StatelessWidget {
                 rippleColor: Colors.grey[300]!,
                 hoverColor: Colors.grey[100]!,
                 gap: 8,
-                activeColor: Colors.black,
+                activeColor: Colors.white,
                 iconSize: 24,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 duration: Duration(milliseconds: 400),
@@ -37,24 +37,24 @@ class BottomNavyScreen extends StatelessWidget {
                   GButton(
                     icon: LineIcons.home,
                     text: 'Home',
-                    backgroundColor:Colors.deepPurple.shade100,
+                    backgroundColor:Colors.purple.shade400,
 
                   ),
                   GButton(
                     icon: LineIcons.camera,
                     text: 'Camera',
-                    backgroundColor:Colors.deepPurple.shade100,
+                    backgroundColor:Colors.purple.shade400,
 
                   ),
                   GButton(
                     icon: Icons.favorite,
                     text: 'Favorite',
-                    backgroundColor:Colors.deepPurple.shade100,
+                    backgroundColor:Colors.purple.shade400,
                   ),
                   GButton(
                     icon: Icons.person,
                     text: 'Profile',
-                    backgroundColor:Colors.deepPurple.shade100,
+                    backgroundColor:Colors.purple.shade400,
                   ),
 
                 ],

@@ -50,6 +50,7 @@ dependencies:
   tflite: ^1.1.2
 #  image_picker: ^0.8.3+2
   image: ^3.0.2
+  flutter_rating_bar: ^4.0.0+1
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,11 @@ flutter:
   assets:
      - assets/GOOG.png
      - assets/food.jpg
+     - assets/img.png
+     - assets/img_1.png
+     - assets/img_3.png
+     - assets/img_4.png
+     - assets/cookly3.jpeg
      - assets/jamie-oliver.jpg
      - assets/chef_hat.jpg
      - assets/grapes.jpg

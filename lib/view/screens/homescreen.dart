@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gradproject/provider/auth/auth_provider.dart';
 import 'package:gradproject/provider/detailed_provider.dart';
 import 'package:gradproject/provider/recipe_provider.dart';
+import 'package:gradproject/view/screens/breakfastscreen.dart';
+import 'package:gradproject/view/screens/dessertscreen.dart';
+import 'package:gradproject/view/screens/lunchscreen.dart';
 import 'package:gradproject/view/screens/searchscreen.dart';
 import 'package:gradproject/view/widget/button.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +21,7 @@ class Homescreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Container(
+
         child: Column(
           children: [
             Row(
@@ -31,7 +35,7 @@ class Homescreen extends StatelessWidget {
                       icon: Icon(Icons.search),color: Colors.black,),
                 ),
                 Expanded(
-                    child: ClipOval(child: Image.asset("assets/MicrosoftTeams-image.png"))),
+                    child: Image.asset("assets/cookly3.jpeg")),
                 Expanded(
                   child: IconButton(
                       onPressed: () {
@@ -43,7 +47,7 @@ class Homescreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 40,
             ),
             Padding(
               padding: const EdgeInsets.all(10),
@@ -61,12 +65,15 @@ class Homescreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 15,
+              height: 10,
             ),
             Row(
               children: [
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => BreakfastScreen()));
+                  },
                   icon: CircleAvatar(
                     child: ClipOval(
                       child: Image.network(
@@ -81,7 +88,7 @@ class Homescreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
-                      primary: Colors.deepPurple[100]
+                      primary: Colors.purple[400]
                   ),
                 ),
                 SizedBox(
@@ -89,7 +96,10 @@ class Homescreen extends StatelessWidget {
                 ),
 
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => LunchScreen()));
+                  },
                   icon: CircleAvatar(
                     child: ClipOval(
                       child: Image.network(
@@ -104,7 +114,7 @@ class Homescreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
-                      primary: Colors.deepPurple[100]
+                      primary: Colors.purple[400]
                   ),
                 ),
                 SizedBox(
@@ -112,19 +122,22 @@ class Homescreen extends StatelessWidget {
                 ),
 
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => DessertScreen()));
+                  },
                   icon: CircleAvatar(
                     child: ClipOval(
                       child: Image.network("https://resize.img.allw.mn/thumbs/00/surd8r8ca2rka63zdt9in_1080_1225.jpg?width=1200&height=1200",fit: BoxFit.cover)
                     ),
-                    radius: 21,
+                    radius: 20,
                   ),
-                  label: Text("Desert"),
+                  label: Text("Dessert"),
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
-                      primary: Colors.deepPurple[100]
+                      primary: Colors.purple[400]
                   ),
                 ),
               ],
@@ -174,34 +187,41 @@ class Homescreen extends StatelessWidget {
                               print(provider.recipemodel[itemIndex].id);
                             },
                             child: Card(
-                              elevation: 40,
-                              shadowColor: Colors.indigoAccent,
+                              elevation: 50,
+                              semanticContainer: true,
+                              //clipBehavior: Clip.antiAliasWithSaveLayer,
+                              shadowColor: Colors.purple,
+
                               child: Container(
-                                margin: EdgeInsets.all(8.0),
+                               // height:double.infinity,
+                                margin: EdgeInsets.all(60),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderRadius: BorderRadius.circular(80),
                                   image: DecorationImage(
-                                    image: NetworkImage(
+                                    image:
+                                    NetworkImage(
                                         provider.recipemodel[itemIndex].image),
                                     fit: BoxFit.cover,
+                                    alignment: Alignment.topCenter,
+
+
                                   ),
                                 ),
                               ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(15),
                             child: Align(
-                              alignment: Alignment.topCenter,
-                              child: Container(
-                                decoration:
-                                BoxDecoration(borderRadius: BorderRadius.circular(8),color: Colors.deepPurple[100]),
-                                child: Text(
-                                  provider.recipemodel[itemIndex].name,
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: Colors.white, fontWeight: FontWeight.bold
-                                  ),
+                              alignment: Alignment.bottomCenter,
+                              child: Text(
+                                provider.recipemodel[itemIndex].name,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.purple[600], fontWeight: FontWeight.bold
                                 ),
                               ),
                             ),

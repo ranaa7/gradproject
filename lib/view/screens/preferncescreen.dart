@@ -57,7 +57,7 @@ class _Preference_screenState extends State<Preference_screen> {
     return Scaffold(
       
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(15),
         child: Form(
           key: widget.form,
           child: Container(
@@ -71,7 +71,7 @@ class _Preference_screenState extends State<Preference_screen> {
                 Text("Enter your preference", style: TextStyle(
                     fontSize: 18, fontWeight: FontWeight.bold,color: Colors.black
                 ),),
-                SizedBox(height: 15,),
+
                 // DropdownButton(value:dropdownvalue,items: items.map((String items){
                 //   return DropdownMenuItem(child: Text(items),value: items);
                 // }).toList(), onChanged: (String? newval){
@@ -82,34 +82,46 @@ class _Preference_screenState extends State<Preference_screen> {
                 SizedBox(height: 30,),
 
     Expanded(
-      child: ListView(
-              children: [
-                buildToggleCheckbox(allowNotifications),
-                Divider(),
-                ...notifications.map(buildSingleCheckbox).toList(),
-              ],
-            ),
+      child: Row(
+        children: [
+          Expanded(
+            child: ListView(
+                    children: [
+                      buildToggleCheckbox(allowNotifications),
+                      Divider(),
+                      ...notifications.map(buildSingleCheckbox).toList(),
+                    ],
+                  ),
+          ),
+          Expanded(
+            child: Align( alignment: Alignment.bottomRight,
+                child: Image.asset("assets/img_3.png",height: 350,)),
+          ),
+        ],
+      ),
     ),
 
+                SizedBox(height: 10,),
+              Container(
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    if(widget.form.currentState!.validate()) {
+                      Provider.of<AuthProvider>(context,listen: false).signup(widget.e.text, widget.p.text, widget.n.text,names);
 
-
-                Container(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if(widget.form.currentState!.validate()) {
-                        Provider.of<AuthProvider>(context,listen: false).signup(widget.e.text, widget.p.text, widget.n.text,names);
-
-                      }
-                    },
-                    child: Text('Sign up', style: TextStyle(fontSize: 20)),
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40),
-                        ),
-                        primary: Colors.deepPurple[100]
-                    ),
+                    }
+                  },
+                  child: Text('Sign up', style: TextStyle(fontSize: 20)),
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      primary: Colors.deepPurple[100]
                   ),
                 ),
+              ),
+              )
+
               ],
             )),
           ),

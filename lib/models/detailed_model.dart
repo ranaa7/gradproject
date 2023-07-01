@@ -11,6 +11,14 @@ class Detailedmodel{
   String keywords;
   String quantities;
   String servings;
+  double FatContent;
+  double SaturatedFatContent;
+  double CholesterolContent;
+  double SodiumContent;
+  double CarbohydrateContent;
+  double FiberContent;
+  double SugarContent;
+  double ProteinContent;
 
   Detailedmodel({
    required this.id,
@@ -18,12 +26,19 @@ class Detailedmodel{
    required this.image,
   required  this.cooktime,
    required this.calories,
-
     required this.ingredients,
    required this.instructions,
     required this.keywords,
     required this.quantities,
     required this.servings,
+    required this.FatContent,
+    required this.SaturatedFatContent,
+    required this.CholesterolContent,
+    required this.SodiumContent,
+    required this.CarbohydrateContent,
+    required this.FiberContent,
+    required this.SugarContent,
+    required this.ProteinContent,
 }
    );
   factory Detailedmodel.fromJson(Map<String, dynamic> json) => Detailedmodel(
@@ -36,7 +51,17 @@ class Detailedmodel{
       instructions: json["RecipeInstructions"],
       keywords: json["Keywords"],
       quantities:json["RecipeIngredientQuantities"],
-      servings: json["RecipeServings"]
+      servings: json["RecipeServings"],
+
+      FatContent: json["FatContent"],
+      SaturatedFatContent: json["SaturatedFatContent"],
+      CholesterolContent: json["CholesterolContent"],
+      SodiumContent: json["SodiumContent"],
+      CarbohydrateContent: json["CarbohydrateContent"],
+      FiberContent: json["FiberContent"],
+      SugarContent: json["SugarContent"],
+      ProteinContent: json["ProteinContent"]
+
   );
 
 }

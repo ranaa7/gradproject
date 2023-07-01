@@ -27,9 +27,8 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Expanded(child: ClipOval(child: Image.asset("assets/MicrosoftTeams-image.png",height: 150,),)),
-              Text("Login",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
-              Text("Welcome Back",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
+              Expanded(child: ClipOval(child: Image.asset("assets/img_1.png",height: 150,),)),
+              Text("Welcome Back",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
               SizedBox(height: 20,),
               TextFormField(
                 controller: _email,
@@ -103,10 +102,10 @@ class LoginScreen extends StatelessWidget {
                 Provider.of<AuthProvider>(context,listen: false).googlesignin();
                 },
                  child: Container(
-                    width: 200,
-                    height: 50,
+                   // width: 200,
+                   // height: 50,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -116,14 +115,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/GOOG.png',height: 20,),
-                        SizedBox(width: 10,),
-                        Text('Sign in with Google'),
-                      ],
-                    ),
+                    child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Image.asset('assets/GOOG.png',height: 20,)),
                   )
               )
             ],

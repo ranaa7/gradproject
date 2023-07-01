@@ -96,7 +96,6 @@
 //
 // }
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -111,28 +110,30 @@ import '../../view/screens/auth/login_screen.dart';
 class AuthProvider extends ChangeNotifier {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   GoogleSignIn googleSignIn = GoogleSignIn();
-    void googlesignin() async {
+
+  void googlesignin() async {
     final GoogleSignInAccount? googleuser = await googleSignIn.signIn();
     print(googleuser);
     GoogleSignInAuthentication googleSignInAuthentication =
-    await googleuser!.authentication;
+        await googleuser!.authentication;
     final AuthCredential credential = GoogleAuthProvider.credential(
         idToken: googleSignInAuthentication.idToken,
         accessToken: googleSignInAuthentication.accessToken);
     await auth.signInWithCredential(credential).then((user) {
-      saveuser(user, "",[]);
+      saveuser(user, "", []);
       Get.to(Homescreen());
     });
   }
-  UserModel model = UserModel(
-      name: "",
-      email: "",
-      image: "",
-      userId: "",
-    preference: [],
 
-     );
+  UserModel model = UserModel(
+    name: "",
+    email: "",
+    image: "",
+    userId: "",
+    preference: [],
+  );
 
   void login(String email, String password) async {
     try {
@@ -155,8 +156,7 @@ class AuthProvider extends ChangeNotifier {
     Get.offAll(LoginScreen());
   }
 
-  void signup(String email, String password, String name, List pref
-      ) async {
+  void signup(String email, String password, String name, List pref) async {
     try {
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
@@ -170,7 +170,7 @@ class AuthProvider extends ChangeNotifier {
     } catch (e) {
       print(e);
       Get.snackbar(
-        //mssg bttl3 kda ll user
+          //mssg bttl3 kda ll user
           "signup screen",
           e.toString(),
           snackPosition: SnackPosition.BOTTOM,
@@ -178,8 +178,11 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  saveuser(UserCredential user, String name, List pref
-      ,) async {
+  saveuser(
+    UserCredential user,
+    String name,
+    List pref,
+  ) async {
     // UserModel userModel = UserModel(
     //     name: name == "" ?user.user!.displayName! :name ,
     //     email: user.user!.email!, image: "", userId: user.user!.uid);
@@ -188,14 +191,12 @@ class AuthProvider extends ChangeNotifier {
         email: user.user!.email!,
         image: "",
         userId: user.user!.uid,
-        preference: pref
-
-    );
+        preference: pref);
     await firestore
         .collection("users")
         .doc(user.user!.uid)
         .set(//collection gowaha doc gowah collection tany or field
-        userModel.toJson());
+            userModel.toJson());
     //myzt el set 3n el add en ana mmkn ely a7dd el doc id bt3 el sh5s
   }
 
@@ -208,10 +209,24 @@ class AuthProvider extends ChangeNotifier {
       model = UserModel.fromJson(value.data()!);
     });
     notifyListeners();
-
+  }
+  updateuserinfo(String name, String email , List pref) async {
+    await firestore
+        .collection("users")
+        .doc(auth.currentUser!.uid)
+        .update({'name':name,
+                  'email':email,
+                   'preference':pref
+        })
+        .then((value) {
+      getuser();
+    });
+    notifyListeners();
   }
 
-  // getkeywords() {
-  //   return model.vegan + "," + model.spicy;
-  // }
-}
+
+
+
+ }
+
+

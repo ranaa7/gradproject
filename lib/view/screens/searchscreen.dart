@@ -49,33 +49,43 @@ class SearchScreen extends StatelessWidget {
                     begin: AlignmentDirectional.topStart,
                     end: AlignmentDirectional.bottomEnd,
                     colors: [
-                      Colors.cyan.shade100,
-                      Colors.deepPurple.shade50,
+                      Colors.grey.shade50,
+                      Colors.grey.shade50,
                       Colors.purple.shade200
                     ])),
           ),
-            Column(children: [TextField(
-              onSubmitted: (value) {
-                List key = provider1.model.preference;
+            Column(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+
+                onSubmitted: (value) {
+                  List key = provider1.model.preference;
 
 
-                provider.getAllSearchrecipe(value, key);
+                  provider.getAllSearchrecipe(value, key);
 
-                print(value);
+                  print(value);
 
-                print(key);
-                print(provider.getAllSearchrecipe(value, key));
-                Text(value );
-              }, decoration: InputDecoration(
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(20),
-                   ),
-                 suffixIcon: IconButton(onPressed: (){
-                   Navigator.of(context).push(MaterialPageRoute(builder:(context)=> Homescreen()
-                   ));
-                 },icon: Icon(Icons.arrow_back),),
-                prefixIcon: Icon(Icons.search),
-                hintText: "search , Ex:pasta,shrimp"),
+                  print(key);
+                  print(provider.getAllSearchrecipe(value, key));
+                  Text(value );
+                }, decoration: InputDecoration(
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(60),
+                     ),
+                   suffixIcon: Row(
+                   mainAxisSize: MainAxisSize.min,
+                     children: [
+                     IconButton(onPressed: (){}, icon: Icon(Icons.filter_list_alt)),
+                     IconButton(onPressed: (){
+      Navigator.of(context).push(MaterialPageRoute(builder:(context)=> Homescreen()
+      ));
+      },icon: Icon(Icons.arrow_back),),],),
+
+                  prefixIcon: Icon(Icons.search),
+                  hintText: "search , Ex:pasta,shrimp"),
             ),
+              ),
               Expanded(
                 child:
                 ListView.builder(
@@ -84,13 +94,21 @@ class SearchScreen extends StatelessWidget {
                       return GestureDetector(
                         onTap:(){provider2.getdetails(provider.searchmodel[index].id);},
                         child: Card(
-                          elevation: 5,
-                          color: Colors.white60,
+                          elevation: 10,
+                          color: Colors.grey[200],
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(60),
+                          ),
                           child: Row(
                             children: [
                               Expanded(
-                                child: FadeInImage.assetNetwork(image : provider.searchmodel[index].image=="character(0)"?"https://i.imgur.com/3A12AW2.png":provider.searchmodel[index].image, placeholder: "assets/jamie-oliver.jpg"),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(130),
+                                  child: FadeInImage.assetNetwork(image : provider.searchmodel[index].image=="character(0)"?"https://i.imgur.com/3A12AW2.png":provider.searchmodel[index].image, placeholder: "assets/jamie-oliver.jpg"
+                                  ,fit: BoxFit.cover,),
+
                                 ),
+                              ),
                               // Column(children: [],)
                               Expanded(
                                 child: ListTile(
@@ -98,10 +116,13 @@ class SearchScreen extends StatelessWidget {
                                     provider.searchmodel[index].name,
                                     style: TextStyle(color: Colors.black),
                                   ),
-                                  subtitle: Text(
+                                  subtitle: Row(children: [
+                                    Text("🍔"),
+                                    Text(
                                     provider.searchmodel[index].recipecateg,
-                                    style: TextStyle(color: Colors.pink),
-                                  ),
+                                    style: TextStyle(color: Colors.purple),
+                                  ),],)
+
                                 ),
                               )
                             ],

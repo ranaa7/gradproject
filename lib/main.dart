@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:gradproject/provider/auth/auth_provider.dart';
+import 'package:gradproject/provider/auth/fav_provider.dart';
+import 'package:gradproject/provider/auth/rating_provider.dart';
 import 'package:gradproject/provider/bottom_navy_provider.dart';
 import 'package:gradproject/provider/control_provider.dart';
 import 'package:gradproject/provider/detailed_provider.dart';
@@ -29,6 +31,8 @@ void main()async {
   runApp(MultiProvider(providers: [
 
     ChangeNotifierProvider(create: (context) => AuthProvider()),
+    ChangeNotifierProvider(create: (context) => RatingProvider()),
+    ChangeNotifierProvider(create: (context) => FavProvider()),
     ChangeNotifierProvider(create: (context) => ControlProvider()),
     ChangeNotifierProvider(create: (context) => BottomNavyProvider()),
     ChangeNotifierProvider(create: (context) => Recipeprovider()),

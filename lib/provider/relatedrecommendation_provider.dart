@@ -20,5 +20,39 @@ class Relatedrecipeprovider extends ChangeNotifier {
     }
   }
 
+  Future getBreakfast() async {
+    try {
+      var response = await Dio().get("http://10.0.2.2:5000/category?category=Breakfast");
+      relatedrecipe= List<Relatedrecipemodel>.from(response.data["recipes"].map((x)=>Relatedrecipemodel.fromJson(x)));
+      notifyListeners();
+    }
+    catch (e) {
+      print(e);
+    }
+  }
+
+
+  Future getLunch() async {
+    try {
+      var response = await Dio().get("http://10.0.2.2:5000/category?category=Lunch/Snacks");
+      relatedrecipe= List<Relatedrecipemodel>.from(response.data["recipes"].map((x)=>Relatedrecipemodel.fromJson(x)));
+      notifyListeners();
+    }
+    catch (e) {
+      print(e);
+    }
+  }
+
+
+  Future getDessert() async {
+    try {
+      var response = await Dio().get("http://10.0.2.2:5000/category?category=Dessert");
+      relatedrecipe= List<Relatedrecipemodel>.from(response.data["recipes"].map((x)=>Relatedrecipemodel.fromJson(x)));
+      notifyListeners();
+    }
+    catch (e) {
+      print(e);
+    }
+  }
 
 }

@@ -3,7 +3,6 @@ import 'package:gradproject/view/screens/camerascreen.dart';
 import 'package:gradproject/view/screens/detailedpagescreen.dart';
 import 'package:gradproject/view/screens/favoritesscreen.dart';
 import 'package:gradproject/view/screens/homescreen.dart';
-import 'package:gradproject/view/screens/meal_plan_screen.dart';
 import 'package:gradproject/view/screens/user_profile_screen.dart';
 
 class BottomNavyProvider extends ChangeNotifier{
@@ -21,7 +20,7 @@ class BottomNavyProvider extends ChangeNotifier{
         currentscreen=Camerascreen();
         break;
       case 2:
-        currentscreen=FavoritesScreen();
+        currentscreen=FavoriteScreen();
         break;
       case 3:
         currentscreen=ProfileScreen();
