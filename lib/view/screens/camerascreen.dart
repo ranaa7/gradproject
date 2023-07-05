@@ -233,8 +233,8 @@ class CamerascreenState extends State<Camerascreen> {
                                 begin: AlignmentDirectional.topStart,
                                 end: AlignmentDirectional.bottomEnd,
                                 colors: [
-                                  Colors.cyan.shade100,
-                                  Colors.deepPurple.shade50,
+                                  Colors.grey.shade100,
+                                  Colors.grey.shade200,
                                   Colors.purple.shade200
                                 ]),
                           borderRadius: BorderRadius.circular(15),
@@ -261,8 +261,8 @@ class CamerascreenState extends State<Camerascreen> {
                                 begin: AlignmentDirectional.topStart,
                                 end: AlignmentDirectional.bottomEnd,
                                 colors: [
-                                  Colors.cyan.shade100,
-                                  Colors.deepPurple.shade50,
+                                  Colors.grey.shade100,
+                                  Colors.grey.shade200,
                                   Colors.purple.shade200
                                 ]),
                           borderRadius: BorderRadius.circular(15),
@@ -291,8 +291,8 @@ class CamerascreenState extends State<Camerascreen> {
                                 begin: AlignmentDirectional.topStart,
                                 end: AlignmentDirectional.bottomEnd,
                                 colors: [
-                                  Colors.cyan.shade100,
-                                  Colors.deepPurple.shade50,
+                                  Colors.grey.shade100,
+                                  Colors.grey.shade200,
                                   Colors.purple.shade200
                                 ]),
                           borderRadius: BorderRadius.circular(15),

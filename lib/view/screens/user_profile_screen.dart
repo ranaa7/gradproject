@@ -100,94 +100,82 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Provider.of<AuthProvider>(context).getuser();
     var userprovider = Provider.of<AuthProvider>(context);
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            height: 200,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.purple[200]!,
-                  Colors.purple[500]!,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              height: 200,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.purple[200]!,
+                    Colors.purple[500]!,
+                  ],
+                ),
+              ),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 50),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 60,
+                            backgroundImage: NetworkImage(
+                              "https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ClipPath(
+                    clipper: WaveClipper(),
+                    child: Container(
+                      color: Colors.white.withOpacity(0.2),
+                      height: 200,
+                    ),
+                  ),
+                  Positioned(
+                    right: 16,
+                    child: IconButton(onPressed: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditScreen()),
+                      );
+                    }, icon: Icon(Icons.edit),color: Colors.white,),
+                  ),
                 ],
               ),
             ),
-            child: Stack(
-              children: [
-
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => EditScreen()),
-                      );
-                    },
-                    icon: Icon(
-                      Icons.edit,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 60,
-                          backgroundImage: NetworkImage(
-                            "https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png",
-                          ),
-                        ),
-                      ),
-
-                    ],
-                  ),
-                ),
-                ClipPath(
-                  clipper: WaveClipper(),
-                  child: Container(
-                    color: Colors.white.withOpacity(0.2),
-                    height: 200,
-                  ),
-                ),
-              ],
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                 textt("Name", Colors.purple.shade500 , FontWeight.bold),
+                  SizedBox(height: 10),
+                  textt(userprovider.model.name, Colors.grey.shade600, FontWeight.normal),
+                  SizedBox(height: 20),
+                 textt("Email", Colors.purple.shade500, FontWeight.bold),
+                  SizedBox(height:10),
+                 textt(userprovider.model.email, Colors.grey.shade600, FontWeight.normal),
+                  SizedBox(height: 20),
+                  textt("Your Prefrence", Colors.purple.shade500 , FontWeight.bold),
+                  SizedBox(height: 10),
+                  textt(userprovider.model.preference.toString(), Colors.grey.shade600, FontWeight.normal),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-               textt("Name", Colors.purple.shade500 , FontWeight.bold),
-                SizedBox(height: 10),
-                textt(userprovider.model.name, Colors.grey.shade600, FontWeight.normal),
-                SizedBox(height: 20),
-               textt("Email", Colors.purple.shade500, FontWeight.bold),
-                SizedBox(height:10),
-               textt(userprovider.model.email, Colors.grey.shade600, FontWeight.normal),
-                SizedBox(height: 20),
-                textt("Your Prefrence", Colors.purple.shade500 , FontWeight.bold),
-                SizedBox(height: 10),
-                textt(userprovider.model.preference.toString(), Colors.grey.shade600, FontWeight.normal),
-                IconButton(onPressed: (){
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => EditScreen()),
-                  );
-                }, icon: Icon(Icons.edit))
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

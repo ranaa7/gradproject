@@ -125,45 +125,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
 
 
-
-
-              // TextFormField(
-              //   controller: _allergy,
-              //   validator: (value) {
-              //     if (value!.isEmpty) {
-              //       return "Please enter your Allergy";
-              //     }
-              //     return null;
-              //   },
-              //   decoration: InputDecoration(
-              //     label: Text('Allergy'),
-              //     hintText: "EX: Vegan or Non vegan",
-              //     prefixIcon: Icon(Icons.person),
-              //     border: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //     ),
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 20,
-              // ),
-              // TextFormField(
-              //   controller: _pref,
-              //   validator: (value) {
-              //     if (value!.isEmpty) {
-              //       return "Please enter your preference";
-              //     }
-              //     return null;
-              //   },
-              //   decoration: InputDecoration(
-              //     label: Text('preference'),
-              //     prefixIcon: Icon(Icons.email),
-              //     border: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //     ),
-              //   ),
-              // ),
-
               Container(
                 child: ElevatedButton(
                   onPressed: () {
@@ -180,7 +141,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
-                      primary: Colors.deepPurple[100]
+                      primary: Colors.purple[300]
                   ),
                 ),
               ),

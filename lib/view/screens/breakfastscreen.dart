@@ -58,6 +58,7 @@
 //
 //
 import 'package:flutter/material.dart';
+import 'package:gradproject/provider/category_provider.dart';
 import 'package:gradproject/provider/detailed_provider.dart';
 import 'package:gradproject/provider/relatedrecommendation_provider.dart';
 import 'package:provider/provider.dart';
@@ -67,7 +68,7 @@ class BreakfastScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     var provider = Provider.of<Relatedrecipeprovider>(context);
+     var provider = Provider.of<Categoryprovider>(context);
      var provider2 = Provider.of<Detailedprovider>(context);
     provider.getBreakfast();
     return Scaffold(
@@ -79,7 +80,7 @@ class BreakfastScreen extends StatelessWidget {
           children: [
             SizedBox(height: 16.0),
             Text(
-              'Breakfast Recipes',
+              'Breakfast Recipes🥪',
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
@@ -88,11 +89,11 @@ class BreakfastScreen extends StatelessWidget {
             SizedBox(height: 7),
             Expanded(
               child: ListView.builder(
-                itemCount: provider.relatedrecipe.length,
+                itemCount: provider.categorymodel.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      provider2.getdetails(provider.relatedrecipe[index].id);
+                      provider2.getdetails(provider.categorymodel[index].id);
                     },
                     child: Card(
                       elevation: 5,
@@ -102,14 +103,15 @@ class BreakfastScreen extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: FadeInImage.assetNetwork(
-                              image: provider.relatedrecipe[index].image == "character(0)" ? "https://i.imgur.com/3A12AW2.png" : provider.relatedrecipe[index].image,
-                              placeholder: "assets/jamie-oliver.jpg",
-                              width: 130,
-                              height: 120,
-                              fit: BoxFit.cover,
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.network(
+                                provider.categorymodel[index].image ,
+                                width: 130,
+                                height: 120,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                           SizedBox(width: 16.0),
@@ -118,7 +120,7 @@ class BreakfastScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  provider.relatedrecipe[index].name,
+                                  provider.categorymodel[index].name,
                                   style: TextStyle(
                                     color: Colors.purple,
                                     fontWeight: FontWeight.bold,

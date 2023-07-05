@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:gradproject/provider/auth/auth_provider.dart';
+import 'package:gradproject/view/screens/auth/register_screen.dart';
 import 'package:gradproject/view/screens/checkmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -93,33 +96,62 @@ class _Preference_screenState extends State<Preference_screen> {
                     ],
                   ),
           ),
-          Expanded(
-            child: Align( alignment: Alignment.bottomRight,
-                child: Image.asset("assets/img_3.png",height: 350,)),
+          Padding(
+            padding: const EdgeInsets.all(1),
+            child: Expanded(
+              child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset("assets/img_3.png",height: 350,)),
+            ),
           ),
         ],
       ),
     ),
 
                 SizedBox(height: 10,),
-              Container(
-              child: Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    if(widget.form.currentState!.validate()) {
-                      Provider.of<AuthProvider>(context,listen: false).signup(widget.e.text, widget.p.text, widget.n.text,names);
-
-                    }
-                  },
-                  child: Text('Sign up', style: TextStyle(fontSize: 20)),
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40),
+              Row(
+              children:[
+                Expanded(
+                  child: Container(
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Get.to(RegisterScreen());
+                        },
+                        child: Text('Back', style: TextStyle(fontSize: 20)),
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                            primary: Colors.purple[300]
+                        ),
                       ),
-                      primary: Colors.deepPurple[100]
+                    ),
                   ),
                 ),
-              ),
+                Expanded(
+                  child: Container(
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if(widget.form.currentState!.validate()) {
+                            Provider.of<AuthProvider>(context,listen: false).signup(widget.e.text, widget.p.text, widget.n.text,names);
+
+                          }
+                        },
+                        child: Text('Sign up', style: TextStyle(fontSize: 20)),
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                            primary: Colors.purple[300]
+                        ),
+                      ),
+                    ),
+                  ),
+                ) ,
+              ] ,
+
               )
 
               ],

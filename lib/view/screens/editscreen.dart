@@ -37,13 +37,13 @@ class _EditScreenState extends State<EditScreen> {
     var updateprovider = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: AppBar(title: Text("Edit Profile"),
-      backgroundColor: Colors.deepPurple[200],
+      backgroundColor: Colors.purple.shade300,
       actions: [
         TextButton(onPressed: (){
         updateprovider.updateuserinfo(name.text , email.text , names);
             Navigator.of(context).push(MaterialPageRoute(builder:(context)=> ProfileScreen()
              ));
-      }, child: Text("Update",style:TextStyle(color: Colors.white),))],),
+      }, child: Text("Update",style:TextStyle(color: Colors.white,fontSize: 17),))],),
       body:
       Padding(
         padding: const EdgeInsets.all(8.0),
