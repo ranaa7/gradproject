@@ -194,7 +194,7 @@ class Homescreen extends StatelessWidget {
 
                               child: Container(
                                // height:double.infinity,
-                                margin: EdgeInsets.all(60),
+                                margin: EdgeInsets.all(55),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(80),
                                   image: DecorationImage(
@@ -220,7 +220,7 @@ class Homescreen extends StatelessWidget {
                               child: Text(
                                 provider.recipemodel[itemIndex].name,
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   color: Colors.purple[600], fontWeight: FontWeight.bold
                                 ),
                               ),

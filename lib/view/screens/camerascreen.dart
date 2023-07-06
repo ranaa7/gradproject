@@ -23,8 +23,9 @@ class CamerascreenState extends State<Camerascreen> {
   //Variables
   late Future<File> imageFile;
   bool _loading = true;
-  late File _image;
-  String result = '';
+  late File _image ;
+  List<String> results = [];
+  List<String> ingredients = [];
   late ImagePicker imagePicker;
 
   //Functions
@@ -116,7 +117,7 @@ class CamerascreenState extends State<Camerascreen> {
     //print(recognition);
 
     setState(() {
-      result = '';
+      //result = '';
     });
 
     // result = recognition[0]['label'];
@@ -124,15 +125,13 @@ class CamerascreenState extends State<Camerascreen> {
     recognition?.forEach((element) {
       setState(() {
         print(element.toString());
-        result += element['label'];
-        print(result);
+        results.add(element['label']);
+        print(results);
+        ingredients.addAll(results);
       });
     });
 
-    /*  if(_image == null)
-      return;
-    final List<dynamic>? output= await Tflite.runModelOnImage(path: _image!.path, numResults: 1, imageStd: [58.395, 57.12, 57.375], threshold: 0.5, imageMean: [123.68, 116.78, 103.94]);
-  */
+
   }
 
 
@@ -195,9 +194,9 @@ class CamerascreenState extends State<Camerascreen> {
                           thickness: 1,
                         ),
                         // ignore: unnecessary_null_comparison
-                        result != null
+                        results != null
                             ? Text(
-                          'The ingredient is: ${result + ' '}',
+                          'The ingredient is: ${results }',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,
@@ -218,7 +217,13 @@ class CamerascreenState extends State<Camerascreen> {
                 child: Column(
                   children: [
                     GestureDetector(
-                      onTap: capturePhoto,
+                      onTap: () {
+                        setState(() {
+                        //  _image = null;
+                       //   results = '';
+                        });
+                        capturePhoto();
+                      },
                       child: Container(
                         width: 224,
                         /*MediaQuery
@@ -247,7 +252,10 @@ class CamerascreenState extends State<Camerascreen> {
                     ),
                     SizedBox(height: 30),
                     GestureDetector(
-                      onTap: selectPhoto,
+                      onTap: () {
+
+    selectPhoto();
+    },
                       child: Container(
                         width: /*MediaQuery
                         .of(context)
@@ -275,11 +283,19 @@ class CamerascreenState extends State<Camerascreen> {
                     ),
                     SizedBox(height: 20,),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         List key = provider1.model.preference;
-                        provider.getAllSearchrecipe(result, key);
-                        Navigator.of(context).push(MaterialPageRoute(builder:(context)=> RecommendedScreen()
-                        ));
+                        List<String> ingredients = [];
+
+                        String ingredientsString="";
+                        for (var i = 0; i < results.length; i++) {
+                          ingredients.add(results[i]);
+                          ingredientsString+=results[i]+",";
+                          print("string"+ingredientsString);
+                        }
+
+                        provider.getAllSearchrecipe(ingredientsString, key);
+                        Navigator.of(context).push(MaterialPageRoute(builder:(context)=> RecommendedScreen()));
                       },
                       child: Container(
                         width: 224,

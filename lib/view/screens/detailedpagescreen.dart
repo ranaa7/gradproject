@@ -87,8 +87,33 @@ class DetailedScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
+                    Row(
+                      children:[
+                      RatingBar.builder(
+                        initialRating: 0,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: false,
+                        itemCount: 5,
+                        itemSize: 25,
+                        itemPadding: EdgeInsets.symmetric(horizontal: 0.5),
+                        itemBuilder: (context, index) => Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (rating) {
+                          ratings.add(rating);
+                          detailedid.add(provider1.detailedmodel[0].id);// Create a new list to hold the ratings
+                          // provider3.saveratings(ratings,detailedid);
+                          provider3.saveratingss(ratings, detailedid);
+                          // print(rating);
+                        },
+                      ),
+                    ]
+                    ),
+                    SizedBox(height: 10,),
                     Row(
                       children: [
                        //Icon(Icons.access_alarm),
@@ -99,7 +124,7 @@ class DetailedScreen extends StatelessWidget {
                             fontSize: 15,
                           ),
                         ),
-                        SizedBox(width: 7,),
+                        SizedBox(width: 15,),
                        // Icon(Icons.person),
                         Text("🧑‍🍳"),
                         Text(
@@ -109,7 +134,7 @@ class DetailedScreen extends StatelessWidget {
                             fontSize: 15,
                           ),
                         ),
-                        SizedBox(width: 10,),
+                        SizedBox(width: 15,),
                        // Icon(Icons.local_fire_department_rounded),
                         Text(
                           "🔥 Calories: ",
@@ -127,28 +152,9 @@ class DetailedScreen extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 10,
-                          width: 20,
+                          width: 15,
                         ),
-                    RatingBar.builder(
-                     initialRating: 0,
-                     minRating: 1,
-                     direction: Axis.horizontal,
-                     allowHalfRating: false,
-                     itemCount: 5,
-                     itemSize: 25,
-                     itemPadding: EdgeInsets.symmetric(horizontal: 0.5),
-                     itemBuilder: (context, index) => Icon(
-                     Icons.star,
-                     color: Colors.amber,
-                     ),
-                     onRatingUpdate: (rating) {
-                       ratings.add(rating);
-                       detailedid.add(provider1.detailedmodel[0].id);// Create a new list to hold the ratings
-                      // provider3.saveratings(ratings,detailedid);
-                       provider3.saveratingss(ratings, detailedid);
-                   // print(rating);
-                    },
-                    ),
+
 
                       ],
                     ),

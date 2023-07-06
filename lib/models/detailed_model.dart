@@ -5,12 +5,12 @@ class Detailedmodel{
   String name;
   String image;
   String cooktime;
-  String calories;
+  double calories;
   String ingredients;
   String instructions;
   String keywords;
   String quantities;
-  String servings;
+  double servings;
   double FatContent;
   double SaturatedFatContent;
   double CholesterolContent;
